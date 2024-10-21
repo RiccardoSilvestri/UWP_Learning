@@ -12,21 +12,22 @@
         <StackPanel>
             <Button x:Name="BtnHttpGetComments" Content="HTTPGet comments [PlaceHolderJson]" Click="BtnHttpGetComments_Click"></Button>
         </StackPanel>
-        <StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
+            <StackPanel>
             <ListView x:Name="CommentListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding ID}"/>
-                            <TextBlock Text="{Binding PostID}"/>
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Email}" FontStyle="Italic"/>
-                            <TextBlock Text="{Binding Body}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                
-            </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding ID}"/>
+                                <TextBlock Text="{Binding PostID}"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Email}" FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Body}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
