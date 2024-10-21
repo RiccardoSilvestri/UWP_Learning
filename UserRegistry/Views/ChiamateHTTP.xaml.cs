@@ -29,8 +29,10 @@ namespace UserRegistry.Views
 
         private async void BtnHttpGetComments_Click(object sender, RoutedEventArgs e)
         {
+            CommentsLoadingRing.IsActive= true;
             var comments = await httpCLient.GetFromJsonAsync<List<Comment>>("https://jsonplaceholder.typicode.com/comments");
             CommentListView.ItemsSource = comments;
+            CommentsLoadingRing.IsActive = false;
         }
     }
 }

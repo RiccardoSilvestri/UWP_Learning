@@ -27,7 +27,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-        </StackPanel>
+                <ProgressRing x:Name="CommentsLoadingRing" IsActive="False" Width="50" Height="50" Foreground="green"/>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>
