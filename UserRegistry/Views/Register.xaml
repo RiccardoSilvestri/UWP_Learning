@@ -5,19 +5,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="using:UserRegistry.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UserViewModel}"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Width="1100" Height="800">
 
     <StackPanel>
         <Grid>
-            <TextBlock x:Name="Welcome" HorizontalAlignment="Left" Padding="8" Margin="8" FontSize="32" FontWeight="Bold"/>
+            <TextBlock x:Name="Welcome" HorizontalAlignment="Left" Padding="8" Margin="8" FontSize="32" FontWeight="Bold">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#033736" Offset="0"/>
+                        <GradientStop Color="#0abab5" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
             <TextBlock Text="User Registry" HorizontalAlignment="Center" Margin="8" FontSize="32" FontWeight="Black"
                        Padding="8" CharacterSpacing="69" ToolTipService.ToolTip="Page Title">
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0" />
-                        <GradientStop Color="#FF0078B2" Offset="0.646" />
-                        <GradientStop Color="Black" Offset="1" />
-                        <GradientStop Color="White" Offset="0.469" />
+                        <GradientStop Color="#033736" Offset="0"/>
+                        <GradientStop Color="#0abab5" Offset="1"/>
                     </LinearGradientBrush>
                 </TextBlock.Foreground>
             </TextBlock>
@@ -58,7 +65,7 @@
         </Grid>
         <ScrollViewer  Margin="16" BorderBrush="LightSlateGray" BorderThickness="1" VerticalScrollBarVisibility="Auto" Height="500">
             <StackPanel>
-                <Grid Background="LightSlateGray" Padding="4">
+                <Grid Background="#0abab5" Opacity="0.8" Padding="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="150" />

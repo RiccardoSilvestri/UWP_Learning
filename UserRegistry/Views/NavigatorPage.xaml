@@ -7,20 +7,132 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Background="LightGray" Padding="10" >
-            <Button Content="Home" Click="NavigateToHome_Click" Margin="5"/>
-            <Button Content="Gestione Utenti" Click="NavigateToUsers_Click" Margin="5"/>
-            <Button Content="Logout" Click="NavigateToLogout_Click" Margin="5"/>
-            <Button Content="Uscita Programma" Click="CloseAndExitApplication_Click" Margin="5"/>
-            <Button Content="ChiamataHTTP" Click="NavitageToHTTPCall_Click" Margin="5"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Frame x:Name="MainFrame" Grid.Row="1"/>
+        
+        <Grid Grid.Column="0" Background="#033736">
+            <StackPanel Margin="0,40,0,0" Spacing="15">
+                <Button 
+                    Content="Home" 
+                    Click="NavigateToHome_Click"
+                    Height="60"
+                    Width="260"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#0abab5"
+                    Foreground="White"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#089995"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#078885"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+
+                <Button 
+                    Content="Gestione Utenti" 
+                    Click="NavigateToUsers_Click"
+                    Height="60"
+                    Width="260"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#0abab5"
+                    Foreground="White"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#089995"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#078885"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+
+                <Button 
+                    Content="ChiamataHTTP" 
+                    Click="NavitageToHTTPCall_Click"
+                    Height="60"
+                    Width="260"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#0abab5"
+                    Foreground="White"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#089995"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#078885"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+
+                <Button 
+                    Content="Logout" 
+                    Click="NavigateToLogout_Click"
+                    Height="60"
+                    Width="260"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#0abab5"
+                    Foreground="White"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#089995"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#078885"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+
+                <Button 
+                    Content="Uscita Programma" 
+                    Click="CloseAndExitApplication_Click"
+                    Height="60"
+                    Width="260"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#0abab5"
+                    Foreground="White"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#089995"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#078885"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" Navigated="MainFrame_Navigated"/>
     </Grid>
 </Page>
