@@ -62,6 +62,8 @@
                     Click="AddUser" Grid.Column="2" Content="Add User!" HorizontalAlignment="Right" CornerRadius="6" />
             <Button x:Name="BtnUpdateUser" Background="LightSlateGray" Foreground="White" IsEnabled="False" Grid.Row="2"
             Click="BtnUpdateUser_Click" Grid.Column="2" Content="Update User!" HorizontalAlignment="Left" CornerRadius="6" />
+            <Button x:Name="BtnDeleteUser" Background="LightSlateGray" Foreground="White" IsEnabled="False" Grid.Row="2"
+            Click="BtnDeleteUser_Click" Grid.Column="2" Content="Delete User!" CornerRadius="6" Margin="141,0,0,0" />
         </Grid>
         <ScrollViewer  Margin="16" BorderBrush="LightSlateGray" BorderThickness="1" VerticalScrollBarVisibility="Auto" Height="500">
             <StackPanel>

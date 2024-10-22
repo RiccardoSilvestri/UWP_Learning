@@ -10,6 +10,7 @@ using UserRegistry.BLogic;
 using System.Collections.Generic;
 using UserRegistry.Models;
 using System.Collections.ObjectModel;
+using Windows.UI.ViewManagement;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -93,6 +94,14 @@ namespace UserRegistry.Views
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BtnUpdateUser.IsEnabled = true;
+            BtnDeleteUser.IsEnabled = true;
+        }
+
+        private void BtnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Users.Remove(_viewModel.GetUser);
+            _viewModel.GetUser = new User();
+            BtnUpdateUser.IsEnabled = false;
         }
     }
 }
