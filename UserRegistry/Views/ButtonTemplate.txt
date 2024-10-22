@@ -1,0 +1,23 @@
+                <Button 
+                    Content="//" 
+                    Click="//"
+                    Height="60"
+                    Width="260"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#0abab5"
+                    Foreground="White"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center">
+
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#089995"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#078885"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>

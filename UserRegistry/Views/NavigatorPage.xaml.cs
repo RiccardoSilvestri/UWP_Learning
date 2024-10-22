@@ -45,6 +45,8 @@ namespace UserRegistry.Views
         private void NavigateToHome_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(typeof(Home));
+            var appView = ApplicationView.GetForCurrentView();
+            appView.TryResizeView(new Windows.Foundation.Size(1500, 800));
         }
 
         private void NavigateToLogout_Click(object sender, RoutedEventArgs e)
@@ -55,16 +57,26 @@ namespace UserRegistry.Views
         private void NavigateToUsers_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(typeof(Register));
+            var appView = ApplicationView.GetForCurrentView();
+            appView.TryResizeView(new Windows.Foundation.Size(1500, 800));
         }
+
         private void NavitageToHTTPCall_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(typeof(ChiamateHTTP));
+            var appView = ApplicationView.GetForCurrentView();
+            appView.TryResizeView(new Windows.Foundation.Size(1500, 800));
         }
 
 
         private void CloseAndExitApplication_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
         }
     }
 }

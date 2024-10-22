@@ -10,7 +10,29 @@
 
     <Grid>
         <StackPanel>
-            <Button x:Name="BtnHttpGetComments" Content="HTTPGet comments [PlaceHolderJson]" Click="BtnHttpGetComments_Click"></Button>
+            <Button 
+                x:Name="BtnHttpGetComments"
+                Content="HTTPGet comments [PlaceHolderJson]"
+                Click="BtnHttpGetComments_Click"    
+                Height="44"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Background="#0abab5"
+                Foreground="White"
+                BorderThickness="0"
+                CornerRadius="8">
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#0abab5"/>
+                                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#0abab5"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+            </Button>
+            
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
             <StackPanel>
