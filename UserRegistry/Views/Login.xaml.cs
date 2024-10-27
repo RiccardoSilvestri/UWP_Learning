@@ -16,6 +16,8 @@ using Windows.UI.ViewManagement;
 using Windows.Foundation;
 using System.Reflection;
 using Windows.UI.Popups;
+using System.IO;
+using Windows.System;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace UserRegistry.Views
@@ -66,13 +68,26 @@ namespace UserRegistry.Views
 
         private async void LoginBtn(object sender, RoutedEventArgs e)
         {
-            if (chkNewUser.IsChecked == true)
-            {
-                if (await RegisterNewUser()) // Se nuovo utente registrato con successo, si passa alla pagina di Register.
-                    Frame.Navigate(typeof(NavigatorPage), Username.Text);
+            bool stayLogged = true;
+            if (stayMeLogged.IsChecked == false){
+                if (chkNewUser.IsChecked == true){
+                    if (await RegisterNewUser()) 
+                        Frame.Navigate(typeof(NavigatorPage), Username.Text);
+                }
+                else
+                    CheckCredentials(stayLogged=false); 
             }
-            else
-                CheckCredentials(); // Se utente già registrato, si controllano le credenziali.
+            else{
+                if (chkNewUser.IsChecked == true)
+                {
+                    if (await RegisterNewUser()) 
+                        Frame.Navigate(typeof(NavigatorPage), Username.Text);
+                }
+                else
+                    CheckCredentials(stayLogged); 
+            }
+
+
         }
 
         /// <summary>
@@ -142,14 +157,15 @@ namespace UserRegistry.Views
             return encryptedpwd; // Restituzione della password criptata.
         }
 
-        private async void CheckCredentials()
+        private async void CheckCredentials(bool stayLogged)
         {
+
 
             bool credentialOK = false; // Inizializzazione della variabile credentialOK a false.
 
             
             string encryptedInputPwd = EncryptPassword(Password.Password);
-            await CheckExistLoginUser(encryptedInputPwd);
+            await CheckExistLoginUser(encryptedInputPwd, stayLogged);
         }
 
         private bool CheckNotExistNewUser(string encryptedInputPwd)
@@ -174,15 +190,20 @@ namespace UserRegistry.Views
             return rsult;
         }
 
-        private async Task<bool> CheckExistLoginUser(string encryptedInputPwd)
+
+        private async Task<bool> CheckExistLoginUser(string encryptedInputPwd, bool stayLogged) 
         {
-            if (listCredentials.Find
-                (usr => usr.Username.ToLower().Equals(Username.Text.ToLower()) &&
-                 usr.Password.Equals(encryptedInputPwd)) != null)
-            {
+
+            if (listCredentials.Find(usr => usr.Username.ToLower().Equals(Username.Text.ToLower()) && usr.Password.Equals(encryptedInputPwd)) != null){
                 Debug.WriteLine("Admin logged in at: " + DateTime.Now);
                 Console.WriteLine("Admin logged in at: " + DateTime.Now);
                 Frame.Navigate(typeof(NavigatorPage), Username.Text);
+                if (stayLogged)
+                {
+                    String path = ApplicationData.Current.LocalFolder.Path+"\\staylogged.txt";
+                    String user = listCredentials.Find(usr => usr.Username.ToLower().Equals(Username.Text.ToLower()))?.Username;
+                    File.WriteAllText(path, user);
+                }
                 return false;
             }
             else
@@ -196,12 +217,18 @@ namespace UserRegistry.Views
             }
         }
 
-        // Metodo chiamato all'avvio della pagina per caricare le credenziali presenti nel file credentials.json
-        private async void LoadCredentialsAsync()
-        {
+            // Metodo chiamato all'avvio della pagina per caricare le credenziali presenti nel file credentials.json
+            private async void LoadCredentialsAsync(){
             try{
-            listCredentials = await FileManager.ReadJsonFile<Credentials>("credentials.json");
-
+                listCredentials = await FileManager.ReadJsonFile<Credentials>("credentials.json");
+                string filePath = (ApplicationData.Current.LocalFolder.Path + "\\staylogged.txt");
+                if (File.Exists(filePath)) {
+                    string savedUsername = File.ReadAllText(filePath);
+                    var user = listCredentials.Find(usr => usr.Username.Equals(savedUsername, StringComparison.OrdinalIgnoreCase));
+                    if (user != null) {
+                        Frame.Navigate(typeof(NavigatorPage), Username.Text);
+                    }
+                }
             }
             catch(Exception e)
             {

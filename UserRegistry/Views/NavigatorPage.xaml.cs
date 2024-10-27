@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -51,7 +52,9 @@ namespace UserRegistry.Views
 
         private void NavigateToLogout_Click(object sender, RoutedEventArgs e)
         {
-          Frame.Navigate(typeof(Login));
+            string filePath = (ApplicationData.Current.LocalFolder.Path + "\\staylogged.txt");
+            File.Delete(filePath);
+            Frame.Navigate(typeof(Login));
         }
 
         private void NavigateToUsers_Click(object sender, RoutedEventArgs e)

@@ -61,6 +61,11 @@
                     Content="Nuovo Utente"
                     Foreground="#666666"
                     HorizontalAlignment="Center"/>
+                <CheckBox
+                    x:Name="stayMeLogged"
+                    Content="Resta Loggato"
+                    Foreground="#666666"
+                    HorizontalAlignment="Center"/>
 
                 <Button 
                     Content="Login"
