@@ -71,7 +71,7 @@ namespace UserRegistry.Views
             bool stayLogged = true;
             if (stayMeLogged.IsChecked == false){
                 if (chkNewUser.IsChecked == true){
-                    if (await RegisterNewUser()) 
+                    if (await RegisterNewUser(stayLogged)) 
                         Frame.Navigate(typeof(NavigatorPage), Username.Text);
                 }
                 else
@@ -80,7 +80,7 @@ namespace UserRegistry.Views
             else{
                 if (chkNewUser.IsChecked == true)
                 {
-                    if (await RegisterNewUser()) 
+                    if (await RegisterNewUser(stayLogged)) 
                         Frame.Navigate(typeof(NavigatorPage), Username.Text);
                 }
                 else
@@ -110,7 +110,7 @@ namespace UserRegistry.Views
             sender.BorderThickness = defaultTickness; // Ripristina lo spessore di default del bordo del controllo sender.
         }
 
-        private async Task<bool> RegisterNewUser()
+        private async Task<bool> RegisterNewUser(bool stayLogged)
         {
             bool result = false; // Inizializzazione della variabile result a false.
 
@@ -126,7 +126,12 @@ namespace UserRegistry.Views
                         Username = Username.Text,
                         Password = encryptedPassword
                     });
-
+                    if (stayLogged)
+                    {
+                        String path = ApplicationData.Current.LocalFolder.Path + "\\staylogged.txt";
+                        String user = listCredentials.Find(usr => usr.Username.ToLower().Equals(Username.Text.ToLower()))?.Username;
+                        File.WriteAllText(path, user);
+                    }
                     await FileManager.WriteToJsonFile(listCredentials, "credentials.json", true); //C:\Users\RiccardoSilvestri\AppData\Local\Packages\5a6c4944-6d2b-4aa4-b5a6-a3b733fa2754_xhfdsb7egwnd2\LocalState
                     result = true; // Assegnamento del valore true alla variabile result.
                 }
